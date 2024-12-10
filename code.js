@@ -20,6 +20,43 @@ class DijkstraNode {
 
 }
 
+class PriorityQueue {
+    constructor () {
+        var queue = [];
+        var number = 0;
+    }
+
+    add(DijkstraNode) {
+        number++;
+        queue[number] = DijkstraNode.distance();
+        queue[number] = [];
+        queue[number].push(DijkstraNode.Node());
+        for (var i = 0; i < number; i++) {
+            if (queue[number] > queue[i]) {
+                var swap = queue[number];
+                var nodeSwap = queue[number][0];
+                for (var n = number - 1; n > i; n--) {
+                    queue[(n+1)] = queue[n];
+                    queue[(n+1)][0] = queue[n][0];
+                }
+                queue[i] = swap;
+                queue[i][0] = nodeSwap;
+            }
+        }
+    }
+    poll() {
+        return queue.pop();
+    }
+    isEmpty() {
+        if (queue.length == 0)
+            return true;
+        else
+            return false;
+    }
+    
+
+}
+
 are_isomorphic(graph1, graph2) {
     var DiGraph1 = dijkstra(graph1, 0);
     var DiGraph2 = dijkstra(graph2, 0);
