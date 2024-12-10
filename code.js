@@ -26,10 +26,8 @@ are_isomorphic(graph1, graph2) {
     if (DiGraph1.length != DiGraph2.length)
             return false;
     for(var out = 0; out < DiGraph1.length; out++) {
-        for (var i = 0; i < DiGraph1.length; i++) {
-            if (DiGraph1[out][i] != DiGraph2[out][i])
-                return false;
-        }
+        if (DiGraph1[out].distance() != DiGraph2[out].distance())
+            return false;
     }
     return true;
 }
